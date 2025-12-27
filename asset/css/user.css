@@ -1,0 +1,146 @@
+/* 1. GLOBAL RESET */
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    overflow: hidden; /* Stops whole page from shaking on resize */
+}
+
+/* 2. THE STATIC PROFILE BAR (Top Left) */
+.user_info {
+    background: rgba(14, 80, 1, 0.938);
+    width: 200px !important;
+    min-width: 200px !important;
+    height: 120px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    position: fixed; /* Pinned to top left */
+    top: 0;
+    left: 0;
+    z-index: 2001;
+}
+
+.profile_pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    height: 83px;
+    margin: 5px auto !important;
+    background: #f4f4f4;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.profile_pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user_caption {
+    display: flex;
+    justify-content: center;
+    background: rgb(48, 228, 3);
+    border-radius: 4px;
+    width: 170px;
+    margin: 0px auto;
+}
+
+.user_caption span {
+    padding: 3px 8px;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* 3. THE TOP NAV BAR (Horizontal bar starting after Profile) */
+.top_nav {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 55px; /* Height of the green horizontal bar */
+    z-index: 2000;
+}
+
+.nav_elements {
+    background: rgba(14, 80, 1, 0.938);
+    width: 100%;
+    margin-left: 200px; /* Offset by the profile bar width */
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* 4. THE BODY AREA (Grid structure for locking) */
+.body_area {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    width: 100vw;
+    margin-top: 55px; /* Offset by top_nav height */
+}
+
+/* SIDEBAR Pillar */
+.main_layout {
+    grid-column: 1;
+    background: rgba(14, 80, 1, 0.938);
+    height: calc(100vh - 55px);
+    margin-top: 65px; /* Extra offset to start below the Profile Box (120 - 55 = 65) */
+    overflow-y: auto;
+}
+
+/* CONTENT AREA */
+.body_div {
+    grid-column: 2;
+    padding: 30px;
+    overflow-y: auto;
+    overflow-x: auto; /* Table scrolls here, not the whole page */
+    background: #f4f4f4;
+    height: calc(100vh - 55px);
+}
+
+/* 5. LOGO & LOGOUT BUTTON (Restored to design) */
+.logo_section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo img {
+    width: 45px;
+    height: auto;
+}
+
+.logo_caption h4 {
+    color: #ffffff;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.logout_btn button {
+    background: white;
+    color: rgba(14, 80, 1, 1);
+    padding: 6px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.logout_btn button:hover {
+    background: rgb(48, 228, 3);
+    color: white;
+}
