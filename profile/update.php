@@ -75,7 +75,7 @@ if (!empty($user['profile_pic'])) {
         .menu_item { border-bottom: 1px solid rgba(255,255,255,0.1); }
         .menu_btn, .dash_link { 
             width: 100%; text-align: left; background: none; border: none; 
-            color: white; padding: 12px 15px; cursor: pointer; font-size: 13px; 
+            color: white; padding: 12px 15px; cursor: pointer; font-size: 11px; 
             font-weight: bold; text-transform: uppercase; display: block; text-decoration: none;
         }
         .menu_btn:hover, .dash_link:hover { background: rgba(255,255,255,0.1); color: #30e403; }
@@ -97,7 +97,7 @@ if (!empty($user['profile_pic'])) {
 <body>
     <div class="top_nav">
         <div class="user_info">
-            <div class="profile_pic"><img src="<?= $user_image ?>" alt="Profile" style="width:100%; height:100%; border-radius: 50%; object-fit: cover;"></div>
+            <div class="profile_pic"><img src="<?= $user_image ?>" alt="Profile" style="width:100%; height:100%; object-fit: cover;"></div>
             <div class="user_caption"><span><?= htmlspecialchars($fullname) ?></span></div>
         </div>
         <div class="nav_elements">

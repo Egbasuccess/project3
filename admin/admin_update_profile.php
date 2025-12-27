@@ -129,7 +129,7 @@ if (!empty($user['profile_pic'])) {
         <div class="nav_elements">
             <div class="logo_section">
                 <div class="logo"><img src="../asset/images/NACOSLOGO.png" alt="LOGO"></div>
-                <div class="logo_caption"><h4>FACULTY OF COMPUTING, EBSU</h4></div>       
+                <div class="logo_caption"><h4>FACULTY OF COMPUTING, EBSU (ADMIN PORTAL)</h4></div>       
             </div>
             <div class="logout_btn"><a href="../logout.php"><button>Logout</button></a></div>
         </div>
@@ -142,7 +142,7 @@ if (!empty($user['profile_pic'])) {
                 <li class="menu_item">
                     <button class="menu_btn has_dropdown" onclick="toggleSubmenu('profile')">Profile Details</button>
                     <ul class="submenu active" id="profile">
-                        <li><a href="admin_update_profile.php" style="color:#30e403;">Update Profile</a></li>
+                        <li><a href="#" style="color:#30e403;">Update Profile</a></li>
                         <li><a href="admin_change_password.php">Change Password</a></li>
                     </ul>
                 </li>

@@ -87,7 +87,7 @@ $dept_status = (isset($user['dept_status']) && $user['dept_status'] == 'Cleared'
         <aside class="main_layout">
             <ul class="menu_list">
                 <li class="menu_item">
-                    <a href="user.php" class="dash_link">DASHBOARD</a>
+                    <a href="#"  class="dash_link" style="color:#30e403;" >DASHBOARD</a>
                 </li>
 
                 <li class="menu_item">

@@ -106,7 +106,7 @@ $admin_image = !empty($admin_data['profile_pic']) ? "../asset/images/profiles/" 
         <div class="nav_elements">
             <div class="logo_section">
                 <div class="logo"><img src="../asset/images/NACOSLOGO.png" alt="LOGO"></div>
-                <div class="logo_caption"><h4>FACULTY OF COMPUTING (ADMIN PORTAL)</h4></div>       
+                <div class="logo_caption"><h4>FACULTY OF COMPUTING, EBSU (ADMIN PORTAL)</h4></div>       
             </div>
             <div class="logout_btn"><a href="../logout.php"><button>Logout</button></a></div>
         </div>
@@ -136,18 +136,18 @@ $admin_image = !empty($admin_data['profile_pic']) ? "../asset/images/profiles/" 
                     </ul>
                 </li>
                 <li class="menu_item">
-                    <button class="menu_btn" onclick="toggleSubmenu('approve_faculty')">FACULTY CLEARANCE</button>
-                    <ul class="submenu" id="approve_faculty">
-                        <li><a href="verify_credentials.php">Verify Credentials</a></li>
-                        <li><a href="verify_olevel.php">Verify O'level</a></li>
-                        <li><a href="confirm_dues.php">Confirm Dues Payment</a></li>
-                        <li><a href="confirm_dues.php">Confirm four file</a></li>
+                    <button class="menu_btn has_dropdown" onclick="toggleSubmenu('faculty')">FACULTY CLEARANCE</button>
+                    <ul class="submenu" id="faculty">
+                        <li><a href="faculty_admin/verify_credentials.php">Verify Credentials</a></li>
+                        <li><a href="faculty_admin/verify_olevel.php">Approve O'level</a></li>
+                        <li><a href="faculty_admin/confirm_fac_dues.php">Issue Faculty Receipt</a></li>
+                        <li><a href="faculty_admin/confirm_fourfile.php">Confirm Four File Submission</a></li>
                     </ul>
                 </li>
                 <li class="menu_item">
                     <button class="menu_btn has_dropdown" onclick="toggleSubmenu('dept')">DEPARTMENTAL CLEARANCE</button>
                     <ul class="submenu" id="dept">
-                        <li><a href="approve_dept.php">Verify Departmental Dues</a></li>
+                        <li><a href="approve_dept.php">Issue Dept. Dues Receipt</a></li>
                     </ul>
                 </li>
             </ul>

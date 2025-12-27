@@ -159,7 +159,7 @@ $user_image = !empty($user['profile_pic']) ? "../asset/images/profiles/" . $user
         <div class="nav_elements">
             <div class="logo_section">
                 <div class="logo"><img src="../asset/images/NACOSLOGO.png" alt="LOGO"></div>
-                <div class="logo_caption"><h4>FACULTY OF COMPUTING, EBSU </h4></div>       
+                <div class="logo_caption"><h4>FACULTY OF COMPUTING, EBSU (ADMIN PORTAL)</h4></div>       
             </div>
             <div class="logout_btn"><a href="../logout.php"><button>Logout</button></a></div>
         </div>
@@ -177,31 +177,30 @@ $user_image = !empty($user['profile_pic']) ? "../asset/images/profiles/" . $user
                     </ul>
                 </li>
                 <li class="menu_item">
-                    <button class="menu_btn has_dropdown" onclick="toggleSubmenu('admission')">ACCEPTANCE FEE</button>
-                    <ul class="submenu" id="admission">
+                    <button class="menu_btn has_dropdown" onclick="toggleSubmenu('acceptance')">ACCEPTANCE FEE</button>
+                    <ul class="submenu" id="acceptance">
                         <li><a href="verify_rrr.php">Verify Acceptance RRR</a></li>
                     </ul>
                 </li>
                 <li class="menu_item">
-                    <button class="menu_btn has_dropdown" onclick="toggleSubmenu('admission')">ADMISSION LETTER</button>
+                    <button class="menu_btn has_dropdown" onclick="toggleSubmenu('admission')">Admission Letter</button>
                     <ul class="submenu" id="admission">
-                        <li><a href="admin/offer_letter.php">Upload Credentials</a></li>
-                        <li><a href="#">Print Admission Letter</a></li>
+                        <li><a href="offer_letter.php">Offer Admission Letter</a></li>
                     </ul>
                 </li>
                 <li class="menu_item">
                     <button class="menu_btn has_dropdown" onclick="toggleSubmenu('faculty')">FACULTY CLEARANCE</button>
                     <ul class="submenu" id="faculty">
-                        <li><a href="verify_credentials.php">Upload Credentials</a></li>
-                        <li><a href="verify_olevel.php">O'level Verification</a></li>
-                        <li><a href="confirm_dues.php">Pay Faculty Dues</a></li>
-                        <li><a href="#">Four File Clearance</a></li>
+                        <li><a href="faculty_admin/verify_credentials.php">Verify Credentials</a></li>
+                        <li><a href="faculty_admin/verify_olevel.php">Approve O'level</a></li>
+                        <li><a href="faculty_admin/confirm_fac_dues.php">Issue Faculty Receipt</a></li>
+                        <li><a href="faculty_admin/confirm_fourfile.php">Confirm Four File Submission</a></li>
                     </ul>
                 </li>
                 <li class="menu_item">
                     <button class="menu_btn has_dropdown" onclick="toggleSubmenu('dept')">DEPARTMENTAL CLEARANCE</button>
                     <ul class="submenu" id="dept">
-                        <li><a href="approve_dept.php">Pay Departmental Dues</a></li>
+                        <li><a href="approve_dept.php">Issue Dept. Dues Receipt</a></li>
                     </ul>
                 </li>
             </ul>
@@ -253,6 +252,9 @@ $user_image = !empty($user['profile_pic']) ? "../asset/images/profiles/" . $user
 
     <script>
         function toggleSubmenu(id) {
+            document.querySelectorAll('.submenu').forEach(sub => {
+                if(sub.id !== id) sub.classList.remove('active');
+            });
             document.getElementById(id).classList.toggle('active');
         }
     </script>
