@@ -111,7 +111,7 @@ $user_image = !empty($user['profile_pic']) ? "../asset/images/profiles/" . $user
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change Password - Faculty of Computing</title>
-    <link href="../asset/css/user.css" rel="stylesheet">
+    <link href="../asset/css/admin.css" rel="stylesheet">
     <style>
         .reset-container { max-width: 450px; margin: 50px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 5px solid #30e403; }
         .form-group { margin-bottom: 15px; }

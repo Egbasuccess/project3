@@ -53,7 +53,7 @@ $file_path = "../asset/uploads/verified_receipts/" . $verified_file;
 <body>
     <div class="top_nav">
         <div class="user_info">
-            <div class="profile_pic"><img src="<?= $user_image ?>" alt="Profile" style="width:100%; height:100%; border-radius: 50%; object-fit: cover;"></div>
+            <div class="profile_pic"><img src="<?= $user_image ?>" alt="Profile" style="width:100%; height:100%; object-fit: cover;"></div>
             <div class="user_caption"><span><?= htmlspecialchars($fullname) ?></span></div>
         </div>
         <div class="nav_elements">
@@ -141,8 +141,15 @@ $file_path = "../asset/uploads/verified_receipts/" . $verified_file;
 
     <script>
         function toggleSubmenu(id) {
-            const menu = document.getElementById(id);
-            menu.classList.toggle('active');
+            const allSubmenus = document.querySelectorAll('.submenu');
+            allSubmenus.forEach(menu => {
+                if (menu.id !== id) menu.classList.remove('active');
+            });
+
+            const selectedMenu = document.getElementById(id);
+            if (selectedMenu) {
+                selectedMenu.classList.toggle('active');
+            }
         }
     </script>
 </body>

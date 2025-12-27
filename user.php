@@ -45,7 +45,7 @@ $dept_status = (isset($user['dept_status']) && $user['dept_status'] == 'Cleared'
         .submenu li a { display: block; color: #ddd; padding: 10px 25px; text-decoration: none; font-size: 12px; transition: 0.3s; }
         .submenu li a:hover { color: white; background: rgba(48, 228, 3, 0.3); }
         .menu_btn::after { content: ' ▼'; float: right; font-size: 10px; }
-
+        
         /* PROGRESS TRACKER STYLING */
         .progress-container { background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-top: 20px; }
         .tracker-title { font-size: 18px; color: #0e5001; margin-bottom: 20px; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
@@ -108,7 +108,7 @@ $dept_status = (isset($user['dept_status']) && $user['dept_status'] == 'Cleared'
                     <button class="menu_btn" onclick="toggleSubmenu('admission')">Admission Letter</button>
                     <ul class="submenu" id="admission">
                         <li><a href="admission/admission_letter.php">Upload Credentials</a></li>
-                        <li><a href="acceptance/reprint.php">Print Admission Letter</a></li>
+                        <li><a href="admission/download_admission.php">Print Admission Letter</a></li>
                     </ul>
                 </li>
                 <li class="menu_item">
@@ -117,33 +117,28 @@ $dept_status = (isset($user['dept_status']) && $user['dept_status'] == 'Cleared'
                         <li><a href="faculty/upload_credentials.php">Upload Credentials</a></li>
                         <li><a href="faculty/olevel_verification.php">O'level Verification</a></li>
                         <li><a href="faculty/faculty_dues.php">Pay Faculty Dues</a></li>
+                        <li><a href="faculty/four_files.php">Get Four Files</a></li>
                     </ul>
                 </li>
                 <li class="menu_item">
                     <button class="menu_btn" onclick="toggleSubmenu('department')">Departmental Clearance</button>
                     <ul class="submenu" id="department">
-                        <li><a href="#">Pay Departmental Dues</a></li>
+                        <li><a href="department/dept_dues.php">Pay Departmental Dues</a></li>
                     </ul>
                 </li>
                 <li class="menu_item">
                     <button class="menu_btn" onclick="toggleSubmenu('schoolfess')">School Fees</button>
                     <ul class="submenu" id="schoolfess">
-                        <li><a href="#">Get Original Receipt</a></li>
+                        <li><a href="fees/schoolfee.php">Get Original Receipt</a></li>
                     </ul>
                 </li>
                 <li class="menu_item">
                     <button class="menu_btn" onclick="toggleSubmenu('payment')">Payment</button>
                     <ul class="submenu" id="payment">
-                        <li><a href="#">Pay Medicals Fee</a></li>
-                        <li><a href="#">Pay Orientation Fee</a></li>
-                        <li><a href="#">Pay E-tracking Fee</a></li>
-                        <li><a href="#">O'level verification Original receipt</a></li>
-                    </ul>
-                </li>
-                <li class="menu_item">
-                    <button class="menu_btn" onclick="toggleSubmenu('fourfile')">Four Files Clearance</button>
-                    <ul class="submenu" id="fourfile">
-                        <li><a href="faculty/four_files.php">Get Four Files</a></li>
+                        <li><a href="payment/medical_fee.php">Pay Medical Fee</a></li>
+                        <li><a href="payment/orientation_fee.php">Pay Orientation Fee</a></li>
+                        <li><a href="payment/etracking_fee.php">Pay E-tracking Fee</a></li>
+                        <li><a href="payment/olevel_original_receipt.php">O'level verification Original receipt</a></li>
                     </ul>
                 </li>
             </ul>
@@ -184,19 +179,6 @@ $dept_status = (isset($user['dept_status']) && $user['dept_status'] == 'Cleared'
             </div>
         </div>
     </div>
-
-    <script>
-        function toggleSubmenu(id) {
-            const allSubmenus = document.querySelectorAll('.submenu');
-            allSubmenus.forEach(menu => {
-                if (menu.id !== id) menu.classList.remove('active');
-            });
-
-            const selectedMenu = document.getElementById(id);
-            if (selectedMenu) {
-                selectedMenu.classList.toggle('active');
-            }
-        }
-    </script>
+    <script src="asset/js/main.js"></script>
 </body>
 </html>

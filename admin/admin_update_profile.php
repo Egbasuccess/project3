@@ -68,7 +68,7 @@ if (!empty($user['profile_pic'])) {
 <head>
     <meta charset="UTF-8">
     <title>Update Profile - Faculty of Computing</title>
-    <link href="../asset/css/user.css" rel="stylesheet">
+    <link href="../asset/css/admin.css" rel="stylesheet">
     <style>
         .menu_list { list-style: none; padding-top: 20px; }
         .menu_item { border-bottom: 1px solid rgba(255,255,255,0.1); }

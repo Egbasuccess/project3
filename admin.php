@@ -57,7 +57,7 @@ if (!empty($admin_data['profile_pic'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Faculty of Computing</title>
-    <link href="asset/css/user.css" rel="stylesheet">
+    <link href="asset/css/admin.css" rel="stylesheet">
     <style>
         /* Sidebar Styling */
         .menu_list { list-style: none; padding-top: 20px; }
@@ -261,13 +261,6 @@ if (!empty($admin_data['profile_pic'])) {
             </div>
     </div>
 
-    <script>
-        function toggleSubmenu(id) {
-            document.querySelectorAll('.submenu').forEach(sub => {
-                if(sub.id !== id) sub.classList.remove('active');
-            });
-            document.getElementById(id).classList.toggle('active');
-        }
-    </script>
+    <script src="asset/js/main.js"></script>
 </body>
 </html>

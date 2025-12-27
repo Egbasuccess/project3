@@ -128,7 +128,7 @@ if (isset($_POST['submit_olevel'])) {
             <?php if ($olevel_status == 'Submitted'): ?>
                 <div class="status-banner">
                     <h3>✅ O'Level Results Submitted</h3>
-                    <p>Your records are being cross-referenced with the examination body.</p>
+                    <p>Wait! your O'level is beign verified.</p>
                     <a href="faculty_dues.php" class="dash_link" style="background:#0e5001; display:inline-block; margin:20px auto; padding:10px 30px;">Proceed to Step 3 &rarr;</a>
                 </div>
             <?php else: ?>

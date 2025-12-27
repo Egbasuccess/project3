@@ -60,7 +60,7 @@ $has_uploaded = !empty($user['acceptance_receipt']);
         .menu_item { border-bottom: 1px solid rgba(255,255,255,0.1); }
         .menu_btn, .dash_link { 
             width: 100%; text-align: left; background: none; border: none; 
-            color: white; padding: 12px 15px; cursor: pointer; font-size: 13px; 
+            color: white; padding: 12px 15px; cursor: pointer; font-size: 11px; 
             font-weight: bold; text-transform: uppercase; display: block; text-decoration: none;
         }
         .menu_btn:hover, .dash_link:hover { background: rgba(255,255,255,0.1); color: #30e403; }
@@ -82,7 +82,7 @@ $has_uploaded = !empty($user['acceptance_receipt']);
 <body>
     <div class="top_nav">
         <div class="user_info">
-            <div class="profile_pic"><img src="<?= $user_image ?>" alt="Profile" style="width:100%; height:100%; border-radius: 50%; object-fit: cover;"></div>
+            <div class="profile_pic"><img src="<?= $user_image ?>" alt="Profile" style="width:100%; height:100%; object-fit: cover;"></div>
             <div class="user_caption"><span><?= htmlspecialchars($fullname) ?></span></div>
         </div>
         <div class="nav_elements">
@@ -111,22 +111,45 @@ $has_uploaded = !empty($user['acceptance_receipt']);
                 <li class="menu_item">
                     <button class="menu_btn" onclick="toggleSubmenu('acceptance')">Acceptance Fee</button>
                     <ul class="submenu active" id="acceptance">
-                        <li><a href="uploadacceptance.php" style="color:#30e403;">Upload Remita Receipt</a></li>
-                        <li><a href="reprint.php">Reprint Original Receipt</a></li>
-                    </ul>
-                </li>
-
-                <li class="menu_item">
-                    <button class="menu_btn" onclick="toggleSubmenu('clearance')">FACULTY CLEARANCE</button>
-                    <ul class="submenu" id="clearance">
-                        <li><a href="#">Upload Documents</a></li>
-                        <li><a href="#">Clearance Status</a></li>
+                        <li><a href="#" style="color:#30e403;">Upload Remita Receipt</a></li>
+                        <li><a href="../acceptance/reprint.php">Reprint Original Receipt</a></li>
                     </ul>
                 </li>
                 <li class="menu_item">
-                    <button class="menu_btn" onclick="toggleSubmenu('dept_clearance')">DEPARTMENTAL CLEARANCE</button>
-                    <ul class="submenu" id="dept_clearance">
-                        <li><a href="#">Pay Departmental Dues</a></li>
+                    <button class="menu_btn" onclick="toggleSubmenu('admission')">Admission Letter</button>
+                    <ul class="submenu" id="admission">
+                        <li><a href="../admission/admission_letter.php">Upload Credentials</a></li>
+                        <li><a href="../admission/download_admission.php">Print Admission Letter</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('faculty')">Faculty Clearance</button>
+                    <ul class="submenu" id="faculty">
+                        <li><a href="../faculty/upload_credentials.php">Upload Credentials</a></li>
+                        <li><a href="../faculty/olevel_verification.php">O'level Verification</a></li>
+                        <li><a href="../faculty/faculty_dues.php">Pay Faculty Dues</a></li>
+                        <li><a href="../faculty/four_files.php">Get Four Files</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('department')">Departmental Clearance</button>
+                    <ul class="submenu" id="department">
+                        <li><a href="../department/dept_dues.php">Pay Departmental Dues</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('schoolfess')">School Fees</button>
+                    <ul class="submenu" id="schoolfess">
+                        <li><a href="../fees/schoolfee.php">Get Original Receipt</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('payment')">Payment</button>
+                    <ul class="submenu" id="payment">
+                        <li><a href="../payment/medical_fee.php">Pay Medical Fee</a></li>
+                        <li><a href="../payment/orientation_fee.php">Pay Orientation Fee</a></li>
+                        <li><a href="../payment/etracking_fee.php">Pay E-tracking Fee</a></li>
+                        <li><a href="../payment/olevel_original_receipt.php">O'level verification Original receipt</a></li>
                     </ul>
                 </li>
             </ul>
@@ -158,12 +181,6 @@ $has_uploaded = !empty($user['acceptance_receipt']);
             </div>
         </div>
     </div>
-
-    <script>
-        function toggleSubmenu(id) {
-            const menu = document.getElementById(id);
-            menu.classList.toggle('active');
-        }
-    </script>
+    <script src="../asset/js/main.js"></script>
 </body>
 </html>

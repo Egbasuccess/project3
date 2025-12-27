@@ -53,7 +53,7 @@ $admin_image = !empty($admin_data['profile_pic']) ? "../asset/images/profiles/" 
 <head>
     <meta charset="UTF-8">
     <title>Verify RRR - Admin Portal</title>
-    <link href="../asset/css/user.css" rel="stylesheet">
+    <link href="../asset/css/admin.css" rel="stylesheet">
     <style>
         /* Sidebar Styling Consistency */
         .menu_list { list-style: none; padding-top: 20px; }
