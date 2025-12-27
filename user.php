@@ -117,13 +117,33 @@ $dept_status = (isset($user['dept_status']) && $user['dept_status'] == 'Cleared'
                         <li><a href="faculty/upload_credentials.php">Upload Credentials</a></li>
                         <li><a href="faculty/olevel_verification.php">O'level Verification</a></li>
                         <li><a href="faculty/faculty_dues.php">Pay Faculty Dues</a></li>
-                        <li><a href="faculty/four_files.php">Four File Clearance</a></li>
                     </ul>
                 </li>
                 <li class="menu_item">
                     <button class="menu_btn" onclick="toggleSubmenu('department')">Departmental Clearance</button>
                     <ul class="submenu" id="department">
                         <li><a href="#">Pay Departmental Dues</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('schoolfess')">School Fees</button>
+                    <ul class="submenu" id="schoolfess">
+                        <li><a href="#">Get Original Receipt</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('payment')">Payment</button>
+                    <ul class="submenu" id="payment">
+                        <li><a href="#">Pay Medicals Fee</a></li>
+                        <li><a href="#">Pay Orientation Fee</a></li>
+                        <li><a href="#">Pay E-tracking Fee</a></li>
+                        <li><a href="#">O'level verification Original receipt</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('fourfile')">Four Files Clearance</button>
+                    <ul class="submenu" id="fourfile">
+                        <li><a href="faculty/four_files.php">Get Four Files</a></li>
                     </ul>
                 </li>
             </ul>
@@ -153,7 +173,7 @@ $dept_status = (isset($user['dept_status']) && $user['dept_status'] == 'Cleared'
                     </li>
                     <li class="step-item <?php echo $dept_status; ?>">
                         <div class="step-icon"><?php echo ($dept_status == "Completed") ? "✓" : "4"; ?></div>
-                        <span class="step-label">Departmental</span>
+                        <span class="step-label">Departmental Clearance</span>
                         <span class="step-status"><?php echo $dept_status; ?></span>
                     </li>
                 </ul>
