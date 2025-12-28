@@ -67,6 +67,7 @@ $has_uploaded = !empty($user['acceptance_receipt']);
         .submenu { background: rgba(0,0,0,0.2); max-height: 0; overflow: hidden; transition: max-height 0.3s; list-style: none; }
         .submenu.active { max-height: 300px; }
         .submenu li a { display: block; color: #ddd; padding: 10px 25px; text-decoration: none; font-size: 12px; }
+        .submenu li a:hover { color: white; background: rgba(48, 228, 3, 0.3); }
         .menu_btn::after { content: ' ▼'; float: right; font-size: 10px; }
 
         /* Content Styling */

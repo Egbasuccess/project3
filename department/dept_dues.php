@@ -56,13 +56,14 @@ if (isset($_POST['submit_dept_teller'])) {
     <title>Departmental Dues - EBSU</title>
     <link href="../asset/css/user.css" rel="stylesheet">
     <style>
-        /* Menu Branding Maintenance */
+        /*Sidebar Menu Styling */
         .menu_list { list-style: none; padding-top: 20px; }
         .menu_btn, .dash_link { width: 100%; text-align: left; background: none; border: none; color: white; padding: 12px 15px; cursor: pointer; font-size: 11px; font-weight: bold; text-transform: uppercase; display: block; text-decoration: none; }
         .menu_btn:hover, .dash_link:hover { background: rgba(255,255,255,0.1); color: #30e403; }
         .submenu { background: rgba(0,0,0,0.2); max-height: 0; overflow: hidden; transition: max-height 0.3s; list-style: none; }
         .submenu.active { max-height: 500px; }
         .submenu li a { display: block; color: #ddd; padding: 10px 25px; text-decoration: none; font-size: 12px; }
+        .submenu li a:hover { color: white; background: rgba(48, 228, 3, 0.3); }
         .menu_btn::after { content: ' ▼'; float: right; font-size: 10px; }
 
         /* UI Components */

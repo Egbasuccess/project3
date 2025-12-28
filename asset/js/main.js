@@ -9,3 +9,4 @@ function toggleSubmenu(id) {
                 selectedMenu.classList.toggle('active');
             }
         }
+

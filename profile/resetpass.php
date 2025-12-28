@@ -102,6 +102,7 @@ $user_image = !empty($user['profile_pic']) ? "../asset/images/profiles/" . $user
     <title>Change Password - Faculty of Computing</title>
     <link href="../asset/css/user.css" rel="stylesheet">
     <style>
+        /* Sidebar Container Styling */
         .reset-container { max-width: 450px; margin: 50px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 5px solid #30e403; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; font-size: 13px; }
@@ -109,7 +110,7 @@ $user_image = !empty($user['profile_pic']) ? "../asset/images/profiles/" . $user
         .btn-reset { width: 100%; padding: 12px; background: #30e403; border: none; color: white; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 14px; transition: 0.3s; }
         .btn-reset:hover { background: #28c902; }
         
-        /* Sidebar Styling Consistency */
+        /* Sidebar Menu Styling */
         .menu_list { list-style: none; padding-top: 20px; }
         .menu_item { border-bottom: 1px solid rgba(255,255,255,0.1); }
         .menu_btn, .dash_link { width: 100%; text-align: left; background: none; border: none; color: white; padding: 12px 15px; cursor: pointer; font-size: 11px; font-weight: bold; text-transform: uppercase; display: block; text-decoration: none; }

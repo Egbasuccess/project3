@@ -41,6 +41,7 @@ $file_path = "../asset/uploads/verified_receipts/" . $verified_file;
         .submenu { background: rgba(0,0,0,0.2); max-height: 0; overflow: hidden; transition: max-height 0.3s; list-style: none; }
         .submenu.active { max-height: 500px; }
         .submenu li a { display: block; color: #ddd; padding: 10px 25px; text-decoration: none; font-size: 12px; }
+        .submenu li a:hover { color: white; background: rgba(48, 228, 3, 0.3); }
         .menu_btn::after { content: ' ▼'; float: right; font-size: 10px; }
 
         /* Main Content UI */
@@ -77,39 +78,49 @@ $file_path = "../asset/uploads/verified_receipts/" . $verified_file;
                         <li><a href="../profile/resetpass.php">Change Password</a></li>
                     </ul>
                 </li>
-
+                
                 <li class="menu_item">
-                    <button class="menu_btn" onclick="toggleSubmenu('acceptance')">ACCEPTANCE FEE</button>
+                    <button class="menu_btn" onclick="toggleSubmenu('acceptance')">Acceptance Fee</button>
                     <ul class="submenu active" id="acceptance">
-                        <?php if (empty($student_upload)): ?>
-                            <li><a href="uploadacceptance.php">Upload Remita Receipt</a></li>
-                        <?php endif; ?>
-                        <li><a href="reprint.php" style="color:#30e403;">Reprint Original Receipt</a></li>
+                        <li><a href="uploadacceptance.php">Upload Remita Receipt</a></li>
+                        <li><a href="#" style="color:#30e403;">Reprint Original Receipt</a></li>
                     </ul>
                 </li>
-
                 <li class="menu_item">
-                    <button class="menu_btn" onclick="toggleSubmenu('admission')">ADMISSION LETTER</button>
+                    <button class="menu_btn" onclick="toggleSubmenu('admission')">Admission Letter</button>
                     <ul class="submenu" id="admission">
-                        <li><a href="#">Upload Credentials</a></li>
-                        <li><a href="#">Print Admission Letter</a></li>
+                        <li><a href="../admission/admission_letter.php">Upload Credentials</a></li>
+                        <li><a href="../admission/download_admission.php">Print Admission Letter</a></li>
                     </ul>
                 </li>
-
                 <li class="menu_item">
-                    <button class="menu_btn" onclick="toggleSubmenu('faculty')">FACULTY CLEARANCE</button>
+                    <button class="menu_btn" onclick="toggleSubmenu('faculty')">Faculty Clearance</button>
                     <ul class="submenu" id="faculty">
-                        <li><a href="#">Upload Credentials</a></li>
-                        <li><a href="#">O'level Verification</a></li>
-                        <li><a href="#">Pay Faculty Dues</a></li>
-                        <li><a href="#">Four File Clearance</a></li>
+                        <li><a href="../faculty/upload_credentials.php">Upload Credentials</a></li>
+                        <li><a href="../faculty/olevel_verification.php">O'level Verification</a></li>
+                        <li><a href="../faculty/faculty_dues.php">Pay Faculty Dues</a></li>
+                        <li><a href="../faculty/four_files.php">Get Four Files</a></li>
                     </ul>
                 </li>
-
                 <li class="menu_item">
-                    <button class="menu_btn" onclick="toggleSubmenu('dept')">DEPARTMENTAL CLEARANCE</button>
-                    <ul class="submenu" id="dept">
-                        <li><a href="#">Pay Departmental Dues</a></li>
+                    <button class="menu_btn" onclick="toggleSubmenu('department')">Departmental Clearance</button>
+                    <ul class="submenu" id="department">
+                        <li><a href="../department/dept_dues.php">Pay Departmental Dues</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('schoolfess')">School Fees</button>
+                    <ul class="submenu" id="schoolfess">
+                        <li><a href="../fees/schoolfee.php">Get Original Receipt</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('payment')">Payment</button>
+                    <ul class="submenu" id="payment">
+                        <li><a href="../payment/medical_fee.php">Pay Medical Fee</a></li>
+                        <li><a href="../payment/orientation_fee.php">Pay Orientation Fee</a></li>
+                        <li><a href="../payment/etracking_fee.php">Pay E-tracking Fee</a></li>
+                        <li><a href="../payment/olevel_original_receipt.php">O'level verification Original receipt</a></li>
                     </ul>
                 </li>
             </ul>
@@ -132,25 +143,13 @@ $file_path = "../asset/uploads/verified_receipts/" . $verified_file;
                 <?php else : ?>
                     <div class="status-icon">✅</div>
                     <h3 style="color: #30e403;">Official Receipt Ready</h3>
-                    <p style="color:#666;">Your payment has been verified. You can now download your original receipt.</p>
+                    <p style="color:#666;">Your Acceptance Fee RRR has been verified. You can now download your original receipt.</p>
                     <a href="<?= $file_path ?>" class="btn-download" download>DOWNLOAD ORIGINAL RECEIPT (PDF)</a>
                 <?php endif; ?>
             </div>
         </div>
     </div>
 
-    <script>
-        function toggleSubmenu(id) {
-            const allSubmenus = document.querySelectorAll('.submenu');
-            allSubmenus.forEach(menu => {
-                if (menu.id !== id) menu.classList.remove('active');
-            });
-
-            const selectedMenu = document.getElementById(id);
-            if (selectedMenu) {
-                selectedMenu.classList.toggle('active');
-            }
-        }
-    </script>
+    <script src="../asset/js/main.js"></script>
 </body>
 </html>

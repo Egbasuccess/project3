@@ -55,7 +55,7 @@ if (isset($_POST['submit_faculty_docs'])) {
     <title>Faculty Credentials - EBSU</title>
     <link href="../asset/css/user.css" rel="stylesheet">
     <style>
-        /* Existing Styles */
+        /* Sidebar Menu Styling */
         .menu_list { list-style: none; padding-top: 20px; }
         .menu_item { border-bottom: 1px solid rgba(255,255,255,0.1); }
         .menu_btn, .dash_link { width: 100%; text-align: left; background: none; border: none; color: white; padding: 12px 15px; cursor: pointer; font-size: 11px; font-weight: bold; text-transform: uppercase; display: block; text-decoration: none; }
@@ -63,7 +63,10 @@ if (isset($_POST['submit_faculty_docs'])) {
         .submenu { background: rgba(0,0,0,0.2); max-height: 0; overflow: hidden; transition: max-height 0.3s; list-style: none; }
         .submenu.active { max-height: 500px; }
         .submenu li a { display: block; color: #ddd; padding: 10px 25px; text-decoration: none; font-size: 12px; }
-        
+        .submenu li a:hover { color: white; background: rgba(48, 228, 3, 0.3); }
+        .menu_btn::after { content: ' ▼'; float: right; font-size: 10px; }
+
+        /* Upload Section Styling */
         .upload-card { background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-top: 20px; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .input-box { border-bottom: 1px solid #eee; padding-bottom: 10px; }
@@ -97,12 +100,54 @@ if (isset($_POST['submit_faculty_docs'])) {
             <ul class="menu_list">
                 <li class="menu_item"><a href="../user.php" class="dash_link">DASHBOARD</a></li>
                 <li class="menu_item">
-                    <button class="menu_btn" onclick="toggleSubmenu('faculty')" style="color:#30e403;">Faculty Clearance</button>
+                    <button class="menu_btn" onclick="toggleSubmenu('profile')">PROFILE DETAILS</button>
+                    <ul class="submenu" id="profile">
+                        <li><a href="../profile/update.php">Update Profile</a></li>
+                        <li><a href="../profile/resetpass.php">Change Password</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('acceptance')">Acceptance Fee</button>
+                    <ul class="submenu" id="acceptance">
+                        <li><a href="../acceptance/uploadacceptance.php">Upload Remita Receipt</a></li>
+                        <li><a href="../acceptance/reprint.php">Reprint Original Receipt</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('admission')">Admission Letter</button>
+                    <ul class="submenu" id="admission">
+                        <li><a href="../admission/admission_letter.php">Upload Credentials</a></li>
+                        <li><a href="../admission/download_admission.php">Print Admission Letter</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('faculty')">Faculty Clearance</button>
                     <ul class="submenu active" id="faculty">
-                        <li><a href="upload_credentials.php" style="color:#30e403;">1. Upload Credentials</a></li>
-                        <li><a href="olevel_verification.php">2. O'level Verification</a></li>
-                        <li><a href="faculty_dues.php">3. Pay Faculty Dues</a></li>
-                        <li><a href="four_files.php">4. Four File Clearance</a></li>
+                        <li><a href="#" style="color:#30e403;">Upload Credentials</a></li>
+                        <li><a href="olevel_verification.php">O'level Verification</a></li>
+                        <li><a href="faculty_dues.php" >Pay Faculty Dues</a></li>
+                        <li><a href="four_files.php">Get Four Files</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('department')">Departmental Clearance</button>
+                    <ul class="submenu" id="department">
+                        <li><a href="../department/dept_dues.php">Pay Departmental Dues</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('schoolfess')">School Fees</button>
+                    <ul class="submenu" id="schoolfess">
+                        <li><a href="../fees/schoolfee.php">Get Original Receipt</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('payment')">Payment</button>
+                    <ul class="submenu" id="payment">
+                        <li><a href="../payment/medical_fee.php">Pay Medical Fee</a></li>
+                        <li><a href="../payment/orientation_fee.php">Pay Orientation Fee</a></li>
+                        <li><a href="../payment/etracking_fee.php">Pay E-tracking Fee</a></li>
+                        <li><a href="../payment/olevel_original_receipt.php">O'level verification Original receipt</a></li>
                     </ul>
                 </li>
             </ul>
@@ -144,6 +189,6 @@ if (isset($_POST['submit_faculty_docs'])) {
             <?php endif; ?>
         </div>
     </div>
-    <script>function toggleSubmenu(id) { document.getElementById(id).classList.toggle('active'); }</script>
+    <script src="../asset/js/main.js"></script>
 </body>
 </html>

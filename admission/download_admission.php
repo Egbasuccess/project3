@@ -42,6 +42,7 @@ $user_image = !empty($user['profile_pic']) ? "../asset/images/profiles/" . $user
         .submenu { background: rgba(0,0,0,0.2); max-height: 0; overflow: hidden; transition: max-height 0.3s; list-style: none; }
         .submenu.active { max-height: 300px; }
         .submenu li a { display: block; color: #ddd; padding: 10px 25px; text-decoration: none; font-size: 12px; }
+        .submenu li a:hover { color: white; background: rgba(48, 228, 3, 0.3); }
         .menu_btn::after { content: ' ▼'; float: right; font-size: 10px; }
 
         /* Document Display Area */
@@ -101,22 +102,61 @@ $user_image = !empty($user['profile_pic']) ? "../asset/images/profiles/" . $user
     <div class="body_area">
         <aside class="main_layout">
             <ul class="menu_list">
-                <li class="menu_item"><a href="../user.php" class="dash_link">Dashboard</a></li>
+                <li class="menu_item">
+                    <a href="../user.php"  class="dash_link" >DASHBOARD</a>
+                </li>
                 <li class="menu_item">
                     <button class="menu_btn" onclick="toggleSubmenu('profile')">Profile Details</button>
                     <ul class="submenu" id="profile">
-                        <li><a href="admin_update_profile.php">Update Profile</a></li>
-                        <li><a href="admin_change_password.php">Change Password</a></li>
+                        <li><a href="../profile/update.php">Update Profile</a></li>
+                        <li><a href="../profile/resetpass.php">Change Password</a></li>
                     </ul>
                 </li>
                 <li class="menu_item">
-                    <button class="menu_btn" onclick="toggleSubmenu('admission')">ADMISSION LETTER</button>
+                    <button class="menu_btn" onclick="toggleSubmenu('acceptance')">Acceptance Fee</button>
+                    <ul class="submenu" id="acceptance">
+                        <li><a href="../acceptance/uploadacceptance.php">Upload Remita Receipt</a></li>
+                        <li><a href="../acceptance/reprint.php">Reprint Original Receipt</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('admission')" style="color:#30e403;">Admission Letter</button>
                     <ul class="submenu active" id="admission">
-                        <li><a href="upload_credentials.php">Upload Credentials</a></li>
+                        <li><a href="admission_letter.php" >Upload Credentials</a></li>
                         <li><a href="#" style="color:#30e403;">Print Admission Letter</a></li>
                     </ul>
                 </li>
-                </ul>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('faculty')">Faculty Clearance</button>
+                    <ul class="submenu" id="faculty">
+                        <li><a href="../faculty/upload_credentials.php">Upload Credentials</a></li>
+                        <li><a href="../faculty/olevel_verification.php">O'level Verification</a></li>
+                        <li><a href="../faculty/faculty_dues.php">Pay Faculty Dues</a></li>
+                        <li><a href="../faculty/four_files.php">Get Four Files</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('department')">Departmental Clearance</button>
+                    <ul class="submenu" id="department">
+                        <li><a href="../department/dept_dues.php">Pay Departmental Dues</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('schoolfess')">School Fees</button>
+                    <ul class="submenu" id="schoolfess">
+                        <li><a href="../fees/schoolfee.php">Get Original Receipt</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('payment')">Payment</button>
+                    <ul class="submenu" id="payment">
+                        <li><a href="../payment/medical_fee.php">Pay Medical Fee</a></li>
+                        <li><a href="../payment/orientation_fee.php">Pay Orientation Fee</a></li>
+                        <li><a href="../payment/etracking_fee.php">Pay E-tracking Fee</a></li>
+                        <li><a href="../payment/olevel_original_receipt.php">O'level verification Original receipt</a></li>
+                    </ul>
+                </li>
+            </ul>
         </aside>
 
         <div class="body_div">
@@ -147,15 +187,6 @@ $user_image = !empty($user['profile_pic']) ? "../asset/images/profiles/" . $user
             </footer>
         </div>
     </div>
-
-    <script>
-        // Maintained toggle script
-        function toggleSubmenu(id) {
-            document.querySelectorAll('.submenu').forEach(sub => {
-                if(sub.id !== id) sub.classList.remove('active');
-            });
-            document.getElementById(id).classList.toggle('active');
-        }
-    </script>
+    <script src="../asset/js/main.js"></script>
 </body>
 </html>

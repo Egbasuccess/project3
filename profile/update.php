@@ -71,6 +71,7 @@ if (!empty($user['profile_pic'])) {
     <title>Update Profile - Faculty of Computing</title>
     <link href="../asset/css/user.css" rel="stylesheet">
     <style>
+        /* Sidebar Menu Styling */
         .menu_list { list-style: none; padding-top: 20px; }
         .menu_item { border-bottom: 1px solid rgba(255,255,255,0.1); }
         .menu_btn, .dash_link { 
@@ -85,6 +86,7 @@ if (!empty($user['profile_pic'])) {
         .submenu li a:hover { color: white; background: rgba(48, 228, 3, 0.3); }
         .menu_btn::after { content: ' ▼'; float: right; font-size: 10px; }
 
+        /*Main Content Styling */
         .main_content_flex { display: flex; gap: 30px; align-items: flex-start; }
         .form_side { flex: 2; }
         .photo_side { flex: 1; background: #f9f9f9; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #ddd; }
