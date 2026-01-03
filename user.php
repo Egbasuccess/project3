@@ -177,6 +177,17 @@ $dept_status = (isset($user['dept_status']) && $user['dept_status'] == 'Cleared'
             <div style="margin-top: 30px; padding: 15px; background: #e8f5e9; border-left: 5px solid #30e403;">
                 <p style="font-size: 14px; color: #2e7d32;"><strong>Note:</strong> Once a stage is marked as <span style="color:#30e403; font-weight:bold;">Completed</span>, the next stage will be activated for processing.</p>
             </div>
+            <!-- FOOTER SECTION --> 
+            <footer class="main_footer">
+                <div>
+                    Copyright &copy; 2025 <strong>Faculty of Computing, EBSU</strong> 
+                    <span class="footer_divider">|</span> 
+                    Powered by <strong>NACOS President</strong>
+                </div>
+                <div style="margin-top: 5px; font-size: 10px; color: #bbb; text-transform: uppercase;">
+                    Official Student Management & Clearance Portal
+                </div>
+            </footer>
         </div>
     </div>
     <script src="asset/js/main.js"></script>

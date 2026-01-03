@@ -285,6 +285,17 @@ if (isset($_POST['submit_olevel'])) {
                     <button type="submit" name="submit_olevel" style="width:100%; padding:15px; background:#0e5001; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer; margin-top:20px;">SUBMIT RESULTS FOR VERIFICATION</button>
                 </form>
             <?php endif; ?>
+            <!-- FOOTER SECTION --> 
+            <footer class="main_footer">
+                <div>
+                    Copyright &copy; 2025 <strong>Faculty of Computing, EBSU</strong> 
+                    <span class="footer_divider">|</span> 
+                    Powered by <strong>NACOS President</strong>
+                </div>
+                <div style="margin-top: 5px; font-size: 10px; color: #bbb; text-transform: uppercase;">
+                    Official Student Management & Clearance Portal
+                </div>
+            </footer>
         </div>
     </div>
 

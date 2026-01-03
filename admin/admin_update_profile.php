@@ -173,6 +173,21 @@ if (!empty($user['profile_pic'])) {
                         <li><a href="approve_dept.php">Issue Dept. Dues Receipt</a></li>
                     </ul>
                 </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('schoolfess')">School Fees</button>
+                    <ul class="submenu" id="schoolfess">
+                        <li><a href="issue_schoolfee_receipt.php">Issue Sch. Fee Receipt</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('payment')">Payment</button>
+                    <ul class="submenu" id="payment">
+                        <li><a href="verify_medicals.php">Pay Medical Fee</a></li>
+                        <li><a href="verify_orientation.php">Pay Orientation Fee</a></li>
+                        <li><a href="verify_etracking.php">Pay E-tracking Fee</a></li>
+                        <li><a href="olevel_original_receipt.php">O'level verification Original receipt</a></li>
+                    </ul>
+                </li>
             </ul>
         </aside>
 

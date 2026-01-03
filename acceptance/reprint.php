@@ -147,6 +147,17 @@ $file_path = "../asset/uploads/verified_receipts/" . $verified_file;
                     <a href="<?= $file_path ?>" class="btn-download" download>DOWNLOAD ORIGINAL RECEIPT (PDF)</a>
                 <?php endif; ?>
             </div>
+            <!-- FOOTER SECTION --> 
+            <footer class="main_footer">
+                <div>
+                    Copyright &copy; 2025 <strong>Faculty of Computing, EBSU</strong> 
+                    <span class="footer_divider">|</span> 
+                    Powered by <strong>NACOS President</strong>
+                </div>
+                <div style="margin-top: 5px; font-size: 10px; color: #bbb; text-transform: uppercase;">
+                    Official Student Management & Clearance Portal
+                </div>
+            </footer>
         </div>
     </div>
 

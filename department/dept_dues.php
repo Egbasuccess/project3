@@ -196,6 +196,17 @@ if (isset($_POST['submit_dept_teller'])) {
                     <?php endif; ?>
                 </div>
             </div>
+            <!-- FOOTER SECTION --> 
+            <footer class="main_footer">
+                <div>
+                    Copyright &copy; 2025 <strong>Faculty of Computing, EBSU</strong> 
+                    <span class="footer_divider">|</span> 
+                    Powered by <strong>NACOS President</strong>
+                </div>
+                <div style="margin-top: 5px; font-size: 10px; color: #bbb; text-transform: uppercase;">
+                    Official Student Management & Clearance Portal
+                </div>
+            </footer>
         </div>
     </div>
 

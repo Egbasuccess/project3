@@ -182,8 +182,16 @@ $user_image = !empty($user['profile_pic']) ? "../asset/images/profiles/" . $user
                 <?php endif; ?>
             </div>
 
-            <footer class="main_footer" style="text-align: center; margin-top: 50px; padding: 20px; color: #888; font-size: 12px; border-top: 1px solid #eee;">
-                Copyright &copy; 2025 <strong>Faculty of Computing, EBSU</strong> | Powered by <strong>NACOS President</strong>
+            <!-- FOOTER SECTION --> 
+            <footer class="main_footer">
+                <div>
+                    Copyright &copy; 2025 <strong>Faculty of Computing, EBSU</strong> 
+                    <span class="footer_divider">|</span> 
+                    Powered by <strong>NACOS President</strong>
+                </div>
+                <div style="margin-top: 5px; font-size: 10px; color: #bbb; text-transform: uppercase;">
+                    Official Student Management & Clearance Portal
+                </div>
             </footer>
         </div>
     </div>

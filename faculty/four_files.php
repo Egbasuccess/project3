@@ -15,13 +15,22 @@ $fullname = $user['fullname'] ?? $email;
 $user_id = $user['id'];
 $user_image = (!empty($user['profile_pic'])) ? "../asset/images/profiles/" . $user['profile_pic'] : "../asset/images/user_icon.png";
 
+// --- FETCH DATA FROM NEW FOURFILE_CLEARANCE TABLE ---
+$check_clearance = mysqli_query($conn, "SELECT * FROM fourfile_clearance WHERE user_id = '$user_id'");
+if (mysqli_num_rows($check_clearance) == 0) {
+    // Initialize record if it doesn't exist
+    mysqli_query($conn, "INSERT INTO fourfile_clearance (user_id) VALUES ('$user_id')");
+    $check_clearance = mysqli_query($conn, "SELECT * FROM fourfile_clearance WHERE user_id = '$user_id'");
+}
+$docs = mysqli_fetch_assoc($check_clearance);
+
 // --- NEW FUNCTIONALITY: GENERATE UNIQUE TRACKING ID ---
-if (empty($user['four_files_track_id'])) {
+if (empty($docs['tracking_id'])) {
     $new_track_id = "EBSU-" . strtoupper(substr(md5($user_id . time()), 0, 8));
-    mysqli_query($conn, "UPDATE login_table SET four_files_track_id = '$new_track_id' WHERE id = '$user_id'");
+    mysqli_query($conn, "UPDATE fourfile_clearance SET tracking_id = '$new_track_id' WHERE user_id = '$user_id'");
     $tracking_id = $new_track_id;
 } else {
-    $tracking_id = $user['four_files_track_id'];
+    $tracking_id = $docs['tracking_id'];
 }
 
 // HANDLE UPLOADS FOR MISSING ITEMS
@@ -30,8 +39,14 @@ if (isset($_POST['upload_missing_docs'])) {
     if (!is_dir($target_dir)) mkdir($target_dir, 0777, true);
 
     $files_to_upload = [
+        'jamb_adm' => 'jamb_admission',
+        'ebsu_adm' => 'admission_letter', // Added EBSU Admission
+        'jamb_res' => 'jamb_result',
+        'birth_cert' => 'birth_certificate',
         'school_fees' => 'school_fees_receipt',
         'dept_dues' => 'dept_dues_receipt',
+        'fac_dues' => 'faculty_dues_receipt', // Added Faculty Dues
+        'acceptance' => 'verified_receipt',    // Added Acceptance Receipt
         'olevel_cert' => 'verified_olevel_cert',
         'post_utme' => 'post_utme_result',
         'passport' => 'passport_photo',
@@ -47,39 +62,40 @@ if (isset($_POST['upload_missing_docs'])) {
             $ext = strtolower(pathinfo($_FILES[$key]['name'], PATHINFO_EXTENSION));
             $filename = $key . "_" . time() . "." . $ext;
             if (move_uploaded_file($_FILES[$key]['tmp_name'], $target_dir . $filename)) {
-                mysqli_query($conn, "UPDATE login_table SET $column = '$filename' WHERE id = '$user_id'");
+                mysqli_query($conn, "UPDATE fourfile_clearance SET $column = '$filename' WHERE user_id = '$user_id'");
             }
         }
     }
     header("Location: four_files.php?status=uploaded");
+    exit();
 }
 
-// CHECKLIST DYNAMIC LOGIC (1-17 tracked here)
-$has_jamb_adm = !empty($user['admission_docs_status']) || !empty($user['faculty_docs_status']);
-$has_ebsu_adm = !empty($user['admission_letter']);
-$has_school_fees = !empty($user['school_fees_receipt']);
-$has_jamb_res = !empty($user['faculty_docs_status']);
-$has_dept_dues = !empty($user['dept_dues_receipt']);
-$has_olevel_v = !empty($user['verified_olevel_cert']);
-$has_post_utme = !empty($user['post_utme_result']);
-$has_acceptance = !empty($user['verified_receipt']);
-$has_birth_cert = !empty($user['faculty_docs_status']);
-$has_lga = !empty($user['lga_letter']);
-$has_undertaking = !empty($user['parent_undertaking']);
-$has_passport = !empty($user['passport_photo']);
-$has_faculty_dues = !empty($user['faculty_dues_receipt']);
-$has_crf = !empty($user['crf_form']);
-$has_sif = !empty($user['sif_form']);
-$has_medical = !empty($user['medical_form']);
+// CHECKLIST DYNAMIC LOGIC
+$has_jamb_adm = !empty($docs['jamb_admission']); 
+$has_ebsu_adm = !empty($docs['admission_letter']);
+$has_school_fees = !empty($docs['school_fees_receipt']);
+$has_jamb_res = !empty($docs['jamb_result']); 
+$has_dept_dues = !empty($docs['dept_dues_receipt']);
+$has_olevel_v = !empty($docs['verified_olevel_cert']);
+$has_post_utme = !empty($docs['post_utme_result']);
+$has_acceptance = !empty($docs['verified_receipt']);
+$has_birth_cert = !empty($docs['birth_certificate']); 
+$has_lga = !empty($docs['lga_letter']);
+$has_undertaking = !empty($docs['parent_undertaking']);
+$has_passport = !empty($docs['passport_photo']);
+$has_faculty_dues = !empty($docs['faculty_dues_receipt']);
+$has_crf = !empty($docs['crf_form']);
+$has_sif = !empty($docs['sif_form']);
+$has_medical = !empty($docs['medical_form']);
 
-// STAGE 1: CORE DOCUMENTS (Excluding CRF, SIF, Medical)
+// STAGE 1: CORE DOCUMENTS
 $core_docs_uploaded = ($has_jamb_adm && $has_ebsu_adm && $has_school_fees && $has_jamb_res && $has_dept_dues && $has_olevel_v && $has_post_utme && $has_acceptance && $has_birth_cert && $has_lga && $has_undertaking && $has_passport && $has_faculty_dues);
 
-// STAGE 2: FINAL FORMS (CRF, SIF, Medical)
+// STAGE 2: FINAL FORMS
 $final_forms_uploaded = ($has_crf && $has_sif && $has_medical);
 
 if (isset($_POST['notify_submission'])) {
-    mysqli_query($conn, "UPDATE login_table SET four_files_status = 'Submitted' WHERE id = '$user_id'");
+    mysqli_query($conn, "UPDATE fourfile_clearance SET submission_status = 'Submitted' WHERE user_id = '$user_id'");
     echo "<script>alert('Notification sent to Faculty Officer. Ensure physical files are submitted.'); window.location.href='four_files.php';</script>";
 }
 ?>
@@ -90,7 +106,6 @@ if (isset($_POST['notify_submission'])) {
     <title>Four Files Clearance - EBSU</title>
     <link href="../asset/css/user.css" rel="stylesheet">
     <style>
-        /* Sidebar Menu Styling */
         .menu_list { list-style: none; padding-top: 20px; }
         .menu_btn, .dash_link { width: 100%; text-align: left; background: none; border: none; color: white; padding: 12px 15px; cursor: pointer; font-size: 11px; font-weight: bold; text-transform: uppercase; display: block; text-decoration: none; }
         .submenu { background: rgba(0,0,0,0.2); max-height: 0; overflow: hidden; transition: max-height 0.3s; list-style: none; }
@@ -98,37 +113,24 @@ if (isset($_POST['notify_submission'])) {
         .submenu li a { display: block; color: #ddd; padding: 10px 25px; text-decoration: none; font-size: 12px; }
         .submenu li a:hover { color: white; background: rgba(48, 228, 3, 0.3); }
         .menu_btn::after { content: ' ▼'; float: right; font-size: 10px; }
-
-        /* Instruction Body Styling */
         .instruction-card { background: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; margin: 20px 0; border-radius: 4px; }
         .checklist-container { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .requirement-item { display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid #f0f0f0; font-size: 12px; }
         .status-tick { margin-right: 10px; font-size: 16px; }
         .tick-yes { color: #28a745; font-weight: bold; }
         .tick-no { color: #dc3545; font-weight: bold; }
-        
-        /* Upload Section Styling */
         .upload-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; background: #f4f7f6; padding: 20px; border-radius: 8px; }
         .upload-box { border-bottom: 1px solid #ddd; padding-bottom: 10px; }
         .upload-box label { display: block; font-size: 10px; font-weight: bold; color: #0e5001; margin-bottom: 5px; text-transform: uppercase; }
         .final-badge { text-align: center; padding: 30px; background: #e8f5e9; border: 2px dashed #2e7d32; border-radius: 10px; }
-        
-        /* Tracking ID Card */
         .tracking-card { background: #e3f2fd; border: 2px solid #1976d2; padding: 20px; text-align: center; border-radius: 8px; margin-top: 20px; }
         .tracking-id { font-size: 24px; font-weight: bold; color: #0d47a1; letter-spacing: 2px; margin: 10px 0; }
         .secondary-upload { background: #fff; border: 1px solid #1976d2; padding: 15px; margin-top: 15px; border-radius: 5px; display: grid; grid-template-columns: 1fr; gap: 10px; text-align: left; }
-
-        /* --- CLEAN PRINT LOGIC --- */
-        #printable_slip { display: none; } /* Hidden on screen */
-
+        #printable_slip { display: none; }
         @media print {
-            body * { visibility: hidden; } /* Hide everything on page */
-            #printable_slip, #printable_slip * { visibility: visible; } /* Show only this div */
-            #printable_slip { 
-                display: block !important; 
-                position: absolute; left: 0; top: 0; width: 100%; 
-                padding: 50px; border: none; color: #000;
-            }
+            body * { visibility: hidden; }
+            #printable_slip, #printable_slip * { visibility: visible; }
+            #printable_slip { display: block !important; position: absolute; left: 0; top: 0; width: 100%; padding: 50px; border: none; color: #000; }
             .print-data { margin-bottom: 15px; font-size: 18px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
         }
     </style>
@@ -160,7 +162,7 @@ if (isset($_POST['notify_submission'])) {
         <div class="nav_elements">
             <div class="logo_section">
                 <div class="logo"><img src="../asset/images/NACOSLOGO.png" alt="LOGO"></div>
-                <div class="logo_caption"><h4>FACULTY OF COMPUTING, EBSU</h4></div>       
+                <div class="logo_caption"><h4>FACULTY OF COMPUTING, EBSU</h4></div>         
             </div>
             <div class="logout_btn"><a href="../logout.php"><button>Logout</button></a></div>
         </div>
@@ -225,7 +227,7 @@ if (isset($_POST['notify_submission'])) {
         </aside>
 
         <div class="body_div">
-            <?php if ($user['final_faculty_clearance'] == 'Cleared'): ?>
+            <?php if ($docs['submission_status'] == 'Cleared'): ?>
                 <div class="final-badge">
                     <h1 style="color: #1b5e20;">🎉 CONGRATULATIONS!</h1>
                     <p>Your Faculty Clearance is fully Approved and Recorded.</p>
@@ -295,22 +297,39 @@ if (isset($_POST['notify_submission'])) {
                     <h3>Upload The Documents Below To Generate Your Four File Tracking ID</h3>
                     <p>Then Present The Tracking ID To The Faculty Officer To Collect Your Physical Four Files</p>
                     <form method="POST" enctype="multipart/form-data" class="upload-grid">
-                        <div class="upload-box"><label>School Fees Receipt</label><input type="file" name="school_fees"></div>
-                        <div class="upload-box"><label>Dept Dues Receipt</label><input type="file" name="dept_dues"></div>
-                        <div class="upload-box"><label>Verified O'Level</label><input type="file" name="olevel_cert"></div>
-                        <div class="upload-box"><label>Post-UTME Result</label><input type="file" name="post_utme"></div>
-                        <div class="upload-box"><label>LGA Letter</label><input type="file" name="lga_id"></div>
-                        <div class="upload-box"><label>Parent Undertaking</label><input type="file" name="undertaking"></div>
-                        <div class="upload-box"><label>Passport Photo</label><input type="file" name="passport"></div>
+                        <div class="upload-box"><label>1. JAMB Admission Letter</label><input type="file" name="jamb_adm"></div>
+                        <div class="upload-box"><label>2. EBSU Admission Letter</label><input type="file" name="ebsu_adm"></div>
+                        <div class="upload-box"><label>3. School Fees Receipt</label><input type="file" name="school_fees"></div>
+                        <div class="upload-box"><label>4. JAMB Result Slip</label><input type="file" name="jamb_res"></div>
+                        <div class="upload-box"><label>5. Dept Dues Receipt</label><input type="file" name="dept_dues"></div>
+                        <div class="upload-box"><label>6. Verified O'Level Result</label><input type="file" name="olevel_cert"></div>
+                        <div class="upload-box"><label>7. Post-UTME Result</label><input type="file" name="post_utme"></div>
+                        <div class="upload-box"><label>9. Acceptance Fee Receipt</label><input type="file" name="acceptance"></div>
+                        <div class="upload-box"><label>10. Birth Certificate</label><input type="file" name="birth_cert"></div>
+                        <div class="upload-box"><label>11. LGA Letter</label><input type="file" name="lga_id"></div>
+                        <div class="upload-box"><label>12. Parent Undertaking</label><input type="file" name="undertaking"></div>
+                        <div class="upload-box"><label>13. Passport Photo</label><input type="file" name="passport"></div>
+                        <div class="upload-box"><label>14. Year One Faculty Dues</label><input type="file" name="fac_dues"></div>
                         <div style="grid-column: span 2;">
                             <button type="submit" name="upload_missing_docs" style="width:100%; padding:12px; background:#1b5e20; color:white; border:none; cursor:pointer; font-weight:bold;">UPLOAD DOCUMENTS</button>
                         </div>
                     </form>
                 <?php endif; ?>
             <?php endif; ?>
+            <!-- FOOTER SECTION --> 
+            <footer class="main_footer">
+                <div>
+                    Copyright &copy; 2025 <strong>Faculty of Computing, EBSU</strong> 
+                    <span class="footer_divider">|</span> 
+                    Powered by <strong>NACOS President</strong>
+                </div>
+                <div style="margin-top: 5px; font-size: 10px; color: #bbb; text-transform: uppercase;">
+                    Official Student Management & Clearance Portal
+                </div>
+            </footer>
         </div>
     </div>
     <script src="../asset/js/main.js"></script>
-
+    
 </body>
 </html>

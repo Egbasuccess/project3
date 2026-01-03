@@ -150,6 +150,21 @@ $admin_image = !empty($admin_data['profile_pic']) ? "../asset/images/profiles/" 
                         <li><a href="approve_dept.php">Issue Dept. Dues Receipt</a></li>
                     </ul>
                 </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('schoolfess')">School Fees</button>
+                    <ul class="submenu" id="schoolfess">
+                        <li><a href="issue_schoolfee_receipt.php">Issue Sch. Fee Receipt</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('payment')">Payment</button>
+                    <ul class="submenu" id="payment">
+                        <li><a href="verify_medicals.php">Pay Medical Fee</a></li>
+                        <li><a href="verify_orientation.php">Pay Orientation Fee</a></li>
+                        <li><a href="verify_etracking.php">Pay E-tracking Fee</a></li>
+                        <li><a href="olevel_original_receipt.php">O'level verification Original receipt</a></li>
+                    </ul>
+                </li>
             </ul>
         </aside>
 
@@ -227,13 +242,6 @@ $admin_image = !empty($admin_data['profile_pic']) ? "../asset/images/profiles/" 
         </div>
     </div>
 
-    <script>
-        function toggleSubmenu(id) {
-            document.querySelectorAll('.submenu').forEach(sub => {
-                if(sub.id !== id) sub.classList.remove('active');
-            });
-            document.getElementById(id).classList.toggle('active');
-        }
-    </script>
+    <script src="../asset/js/main.js"></script>
 </body>
 </html>
