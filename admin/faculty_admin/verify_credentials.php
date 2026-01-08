@@ -37,25 +37,106 @@ $admin_image = (!empty($admin_data['profile_pic'])) ? "../../asset/images/profil
     <title>Verify Credentials - Faculty Admin</title>
     <link href="../../asset/css/admin.css" rel="stylesheet">
     <style>
+        /* Sidebar Styling - Strictly Maintained */
         .menu_list { list-style: none; padding-top: 20px; }
-        .menu_btn, .dash_link { width: 100%; text-align: left; background: none; border: none; color: white; padding: 12px 15px; cursor: pointer; font-size: 11px; font-weight: bold; text-transform: uppercase; display: block; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .menu_item { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .menu_btn, .dash_link { 
+            width: 100%; text-align: left; background: none; border: none; 
+            color: white; padding: 12px 15px; cursor: pointer; font-size: 11px; 
+            font-weight: bold; text-transform: uppercase; display: block; text-decoration: none;
+            box-sizing: border-box;
+        }
+        .menu_btn:hover, .dash_link:hover { background: rgba(255,255,255,0.1); color: #30e403; }
+        
+        .has_dropdown::after { 
+            content: '▼'; 
+            float: right; 
+            font-size: 9px; 
+            color: rgba(255,255,255,0.7); 
+            margin-top: 2px;
+        }
+
         .submenu { background: rgba(0,0,0,0.2); max-height: 0; overflow: hidden; transition: max-height 0.3s; list-style: none; }
-        .submenu.active { max-height: 600px; }
+        .submenu.active { max-height: 500px; }
         .submenu li a { display: block; color: #ddd; padding: 10px 25px; text-decoration: none; font-size: 12px; }
         .submenu li a:hover { color: #30e403; background: rgba(255,255,255,0.05); }
-        .has_dropdown::after { content: '▼'; float: right; font-size: 9px; color: rgba(255,255,255,0.7); margin-top: 2px; }
-
-        table { width: 100%; border-collapse: collapse; background: white; margin-top: 20px; }
-        th { background: #0e5001; color: white; padding: 12px; font-size: 11px; text-align: left; }
-        td { padding: 12px; border-bottom: 1px solid #eee; font-size: 13px; }
         
-        .doc_link { display: inline-block; padding: 5px 8px; background: #f0f0f0; color: #333; text-decoration: none; border-radius: 3px; font-size: 10px; font-weight: bold; margin: 2px; border: 1px solid #ddd; }
-        .doc_link:hover { background: #0e5001; color: white; }
-        
-        .status_pill { padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; }
+        /* TABLE ORGANISATION CSS */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+        thead { background: #0e5001; color: #fff; }
+        th { padding: 15px; text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        td { padding: 15px; border-bottom: 1px solid #eee; vertical-align: middle; }
+        tr:hover { background: #f9f9f9; }
 
-        .main_footer { background: #fdfdfd; margin-top: 40px; padding: 25px 0; text-align: center; border-top: 1px solid #e0e4e8; color: #888; font-size: 12px; }
-        .main_footer strong { color: #0e5001; }
+        /* Document Badge Styling */
+        .doc_container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 8px;
+        }
+        .doc_link {
+            display: block;
+            background: #f1f3f5;
+            color: #0e5001;
+            padding: 6px 4px;
+            text-align: center;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: bold;
+            border: 1px solid #dce0e4;
+            transition: all 0.3s;
+        }
+        .doc_link:hover {
+            background: #0e5001;
+            color: #fff;
+            border-color: #0e5001;
+        }
+        .missing_tag {
+            font-size: 9px;
+            color: #d93025;
+            background: #fff5f5;
+            padding: 4px;
+            border-radius: 4px;
+            border: 1px solid #ffdad8;
+            text-align: center;
+        }
+
+        .status_pill {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* FOOTER STYLING */
+        .main_footer {
+            background: #fdfdfd;
+            margin-top: 40px;
+            padding: 25px 0;
+            text-align: center;
+            border-top: 1px solid #e0e4e8;
+            color: #888;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+        .main_footer strong {
+            color: #0e5001;
+            font-weight: 600;
+        }
+        .footer_divider {
+            margin: 0 10px;
+            color: #ccc;
+        }
     </style>
 </head>
 <body>
@@ -129,7 +210,7 @@ $admin_image = (!empty($admin_data['profile_pic'])) ? "../../asset/images/profil
         </aside>
         
         <div class="body_div">
-            <h2 style="color: #0e5001;">Faculty Credential Verification</h2>
+            <h2 style="color: #0e5001; margin-bottom:5px;">Faculty Credential Verification</h2>
             <p style="font-size: 13px; color: #777;">Review all 10 uploaded documents per student and approve for clearance.</p>
 
             <?= $msg ?>
@@ -150,15 +231,14 @@ $admin_image = (!empty($admin_data['profile_pic'])) ? "../../asset/images/profil
                     ?>
                     <tr>
                         <td>
-                            <strong><?= htmlspecialchars($row['fullname']) ?></strong><br>
-                            <small><?= $row['email'] ?></small>
+                            <strong style="color:#333; font-size:14px;"><?= htmlspecialchars($row['fullname']) ?></strong><br>
+                            <small style="color:#777;"><?= $row['email'] ?></small>
                         </td>
                         <td>
-                            <div style="display: flex; flex-wrap: wrap;">
+                            <div class="doc_container">
                                 <?php 
                                 $docs = ['jamb_adm' => 'JAMB ADM', 'jamb_res' => 'JAMB RES', 'olevel_print' => 'O\'LEVEL', 'ebsu_acc' => 'EBSU ACC', 'ebsu_adm' => 'EBSU ADM', 'lg_id' => 'LG ID', 'post_utme' => 'POST UTME', 'supp_form' => 'SUPP', 'attestation' => 'ATTES.', 'birth_cert' => 'BIRTH'];
                                 foreach($docs as $key => $label):
-                                    // Search for file starting with the key (e.g. jamb_adm_12345.jpg)
                                     $files = glob($doc_path . $key . "_*.*");
                                     if($files):
                                         $file_url = $files[0];
@@ -166,7 +246,7 @@ $admin_image = (!empty($admin_data['profile_pic'])) ? "../../asset/images/profil
                                     <a href="<?= $file_url ?>" target="_blank" class="doc_link"><?= $label ?></a>
                                 <?php else: ?>
                                     <?php if($key != 'supp_form'): ?>
-                                        <span style="font-size:9px; color:red; margin:5px;">Missing <?= $label ?></span>
+                                        <div class="missing_tag">No <?= $label ?></div>
                                     <?php endif; ?>
                                 <?php endif; endforeach; ?>
                             </div>
@@ -180,10 +260,14 @@ $admin_image = (!empty($admin_data['profile_pic'])) ? "../../asset/images/profil
                             <?php if ($row['faculty_docs_status'] == 'Submitted'): ?>
                                 <form method="POST">
                                     <input type="hidden" name="user_id" value="<?= $row['id'] ?>">
-                                    <button type="submit" name="approve_docs" style="background:#28a745; color:white; border:none; padding:8px 12px; border-radius:3px; cursor:pointer; font-size:11px; font-weight:bold;">APPROVE ALL</button>
+                                    <button type="submit" name="approve_docs" style="background:#28a745; color:white; border:none; padding:10px 14px; border-radius:4px; cursor:pointer; font-size:11px; font-weight:bold; box-shadow: 0 2px 5px rgba(40,167,69,0.2);">APPROVE ALL</button>
                                 </form>
                             <?php else: ?>
-                                <span style="color: #28a745; font-weight: bold; font-size: 11px;">✔ VERIFIED</span>
+                                <span style="color: #28a745; font-weight: bold; font-size: 11px; display:flex; align-items:center;">
+                                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16" style="margin-right:4px;">
+                                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                    </svg> VERIFIED
+                                </span>
                             <?php endif; ?>
                         </td>
                     </tr>
@@ -192,23 +276,19 @@ $admin_image = (!empty($admin_data['profile_pic'])) ? "../../asset/images/profil
             </table>
 
             <footer class="main_footer">
-                <div>Copyright &copy; 2025 <strong>Faculty of Computing, EBSU</strong> | Powered by <strong>NACOS President</strong></div>
+                <div>
+                    Copyright &copy; 2025 <strong>Faculty of Computing, EBSU</strong> 
+                    <span class="footer_divider">|</span> 
+                    Powered by <strong>NACOS President</strong>
+                </div>
+                <div style="margin-top: 5px; font-size: 10px; color: #bbb; text-transform: uppercase;">
+                    Official Student Management & Clearance Portal
+                </div>
             </footer>
         </div>
     </div>
 
     <script src="../../asset/js/main.js"></script>
-    <script>
-        function toggleSubmenu(id) {
-            const submenu = document.getElementById(id);
-            if (submenu.style.maxHeight) {
-                submenu.style.maxHeight = null;
-                submenu.classList.remove('active');
-            } else {
-                submenu.style.maxHeight = submenu.scrollHeight + "px";
-                submenu.classList.add('active');
-            }
-        }
-    </script>
+    
 </body>
 </html>
