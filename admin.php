@@ -183,17 +183,17 @@ if (!empty($admin_data['profile_pic'])) {
                     </ul>
                 </li>
                 <li class="menu_item">
-                    <button class="menu_btn" onclick="toggleSubmenu('schoolfess')">School Fees</button>
+                    <button class="menu_btn has_dropdown" onclick="toggleSubmenu('schoolfess')">School Fees</button>
                     <ul class="submenu" id="schoolfess">
                         <li><a href="admin/issue_schoolfee_receipt.php">Issue Sch. Fee Receipt</a></li>
                     </ul>
                 </li>
                 <li class="menu_item">
-                    <button class="menu_btn" onclick="toggleSubmenu('payment')">Payment</button>
+                    <button class="menu_btn has_dropdown" onclick="toggleSubmenu('payment')">Payment</button>
                     <ul class="submenu" id="payment">
-                        <li><a href="admin/verify_medicals.php">Pay Medical Fee</a></li>
-                        <li><a href="admin/verify_orientation.php">Pay Orientation Fee</a></li>
-                        <li><a href="admin/verify_etracking.php">Pay E-tracking Fee</a></li>
+                        <li><a href="admin/verify_medicals.php">Verify Medical Fee</a></li>
+                        <li><a href="admin/verify_orientation.php">Verify Orientation Fee</a></li>
+                        <li><a href="admin/verify_etracking.php">verify E-tracking Fee</a></li>
                         <li><a href="admin/olevel_original_receipt.php">O'level verification Original receipt</a></li>
                     </ul>
                 </li>

@@ -166,7 +166,7 @@ if (isset($_POST['submit_teller'])) {
                     <?php elseif ($has_uploaded_teller): ?>
                         <div style="text-align: center; padding: 20px;">
                             <h3 style="color: #f39c12;">⏳ Verification Pending</h3>
-                            <p>You have uploaded your teller. Please wait while the admin verifies your payment and issues your receipt.</p>
+                            <p>You have uploaded your Bank teller. Please wait while the admin verifies your payment and issues your receipt.</p>
                         </div>
                     <?php else: ?>
                         <h3>Upload Bank Teller</h3>
