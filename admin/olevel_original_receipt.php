@@ -119,7 +119,7 @@ $students = mysqli_query($conn, "SELECT lt.id, lt.fullname, lt.email, fp.olevel_
                 </li>
                 <li class="menu_item">
                     <button class="menu_btn" onclick="toggleSubmenu('faculty')">Faculty Clearance</button>
-                    <ul class="submenu active" id="faculty">
+                    <ul class="submenu" id="faculty">
                         <li><a href="faculty_admin/verify_credentials.php">Verify Credentials</a></li>
                         <li><a href="olevel_original_receipt.php" style="color:#30e403;">O'level Verification</a></li>
                         <li><a href="faculty_admin/confirm_fac_dues.php">Issue Faculty Receipt</a></li>
@@ -139,11 +139,12 @@ $students = mysqli_query($conn, "SELECT lt.id, lt.fullname, lt.email, fp.olevel_
                     </ul>
                 </li>
                 <li class="menu_item">
-                    <button class="menu_btn" onclick="toggleSubmenu('payment')">Payment</button>
+                    <button class="menu_btn active" onclick="toggleSubmenu('payment')">Payment</button>
                     <ul class="submenu" id="payment">
                         <li><a href="verify_medicals.php">Verify Medical Fee</a></li>
-                        <li><a href="verify_orientation.php">Pay Orientation Fee</a></li>
-                        <li><a href="verify_etracking.php">Pay E-tracking Fee</a></li>
+                        <li><a href="verify_orientation.php">Verify Orientation Fee</a></li>
+                        <li><a href="verify_etracking.php">verify E-tracking Fee</a></li>
+                        <li><a href="#" style="color:#30e403;">O'level verification Original receipt</a></li>
                     </ul>
                 </li>
             </ul>

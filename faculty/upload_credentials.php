@@ -184,7 +184,7 @@ if (isset($_POST['submit_faculty_docs'])) {
                         <button type="submit" name="submit_faculty_docs" style="width:100%; padding:15px; background:#0e5001; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer; margin-top:20px;">UPLOAD DOCUMENTS</button>
                     </form>
                     
-                    <a href="#" class="btn-next btn-disabled">NEXT: O'LEVEL VERIFICATION (Locked)</a>
+                    <a href="#" class="btn-next btn-disabled">NEXT: O'LEVEL VERIFICATION</a>
                 </div>
             <?php endif; ?>
             <!-- FOOTER SECTION --> 

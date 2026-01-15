@@ -167,8 +167,8 @@ $admin_image = (!empty($admin_data['profile_pic'])) ? "../asset/images/profiles/
                     <button class="menu_btn has_dropdown" onclick="toggleSubmenu('payment')">Payment</button>
                     <ul class="submenu active" id="payment">
                         <li><a href="#" style="color:#30e403;">Verify Medical Fee</a></li>
-                        <li><a href="verify_orientation.php">Pay Orientation Fee</a></li>
-                        <li><a href="verify_etracking.php">Pay E-tracking Fee</a></li>
+                        <li><a href="verify_orientation.php">Verify Orientation Fee</a></li>
+                        <li><a href="verify_etracking.php">verify E-tracking Fee</a></li>
                         <li><a href="olevel_original_receipt.php">O'level verification Original receipt</a></li>
                     </ul>
                 </li>

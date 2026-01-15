@@ -132,18 +132,51 @@ $admin_image = (!empty($admin_data['profile_pic'])) ? "../../asset/images/profil
             <ul class="menu_list">
                 <li class="menu_item"><a href="../admin.php" class="dash_link">DASHBOARD</a></li>
                 <li class="menu_item">
-                    <button class="menu_btn" onclick="toggleSubmenu('faculty')">FACULTY CLEARANCE</button>
+                    <button class="menu_btn has_dropdown" onclick="toggleSubmenu('profile')">PROFILE DETAILS</button>
+                    <ul class="submenu" id="profile">
+                        <li><a href="../admin_update_profile.php">Update Profile</a></li>
+                        <li><a href="../admin_change_password.php">Change Password</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn has_dropdown" onclick="toggleSubmenu('acceptance')">Acceptance Fee</button>
+                    <ul class="submenu" id="acceptance">
+                        <li><a href="../verify_rrr.php">Verify Acceptance RRR</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn has_dropdown" onclick="toggleSubmenu('admission')">Admission Letter</button>
+                    <ul class="submenu" id="admission">
+                        <li><a href="../offer_letter.php">Offer Admission Letter</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn has_dropdown" onclick="toggleSubmenu('faculty')">FACULTY CLEARANCE</button>
                     <ul class="submenu active" id="faculty">
-                        <li><a href="verify_credentials.php">Verify Credentials</a></li>
+                        <li><a href="verify_credentials"> Verify Credentials</a></li>
                         <li><a href="#" style="color:#30e403;">Approve O'level</a></li>
                         <li><a href="confirm_fac_dues.php">Issue Faculty Receipt</a></li>
                         <li><a href="confirm_fourfile.php">Confirm Four File Submission</a></li>
                     </ul>
                 </li>
                 <li class="menu_item">
-                    <button class="menu_btn" onclick="toggleSubmenu('dept')">DEPARTMENTAL CLEARANCE</button>
+                    <button class="menu_btn has_dropdown" onclick="toggleSubmenu('dept')">DEPARTMENTAL CLEARANCE</button>
                     <ul class="submenu" id="dept">
                         <li><a href="../approve_dept.php">Issue Dept. Dues Receipt</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn" onclick="toggleSubmenu('schoolfess')">School Fees</button>
+                    <ul class="submenu" id="schoolfess">
+                        <li><a href="../issue_schoolfee_receipt.php">Issue Sch. Fee Receipt</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item">
+                    <button class="menu_btn has_dropdown" onclick="toggleSubmenu('payment')">Payment</button>
+                    <ul class="submenu" id="payment">
+                        <li><a href="../verify_medicals.php">Verify Medical Fee</a></li>
+                        <li><a href="../verify_orientation.php">Pay Orientation Fee</a></li>
+                        <li><a href="../verify_etracking.php">Pay E-tracking Fee</a></li>
                     </ul>
                 </li>
             </ul>

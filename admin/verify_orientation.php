@@ -149,8 +149,9 @@ $students = mysqli_query($conn, "SELECT lt.id, lt.fullname, lt.email, fp.orienta
                     <button class="menu_btn" onclick="toggleSubmenu('payment')">Payment</button>
                     <ul class="submenu active" id="payment">
                         <li><a href="verify_medicals.php">Verify Medical Fee</a></li>
-                        <li><a href="verify_orientation.php" style="color:#30e403;">Pay Orientation Fee</a></li>
-                        <li><a href="verify_etracking.php">Pay E-tracking Fee</a></li>
+                        <li><a href="#" style="color:#30e403;">Verify Orientation Fee</a></li>
+                        <li><a href="verify_etracking.php">verify E-tracking Fee</a></li>
+                        <li><a href="olevel_original_receipt.php">O'level verification Original receipt</a></li>
                     </ul>
                 </li>
             </ul>

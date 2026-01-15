@@ -267,7 +267,7 @@ if (isset($_POST['notify_submission'])) {
                         <div class="tracking-id"><?= $tracking_id ?></div>
                         
                         <div class="secondary-upload">
-                            <p style="font-weight:bold; color:#1976d2; margin-bottom:10px;">Final Step: Upload Forms to Before Submitting your Four Files</p>
+                            <p style="font-weight:bold; color:#1976d2; margin-bottom:10px;">Final Step: Upload Filled Forms here, Before Submitting your Four Files</p>
                             <form method="POST" enctype="multipart/form-data">
                                 <div class="upload-box"><label>15. Course Reg Form (CRF)</label><input type="file" name="crf" <?= $has_crf ? 'disabled' : 'required' ?>></div>
                                 <div class="upload-box"><label>16. Student Info Form (SIF)</label><input type="file" name="sif" <?= $has_sif ? 'disabled' : 'required' ?>></div>

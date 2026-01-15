@@ -146,7 +146,7 @@ if(isset($_POST['submit'])){
         <a href="index.php" class="logo-box">
             <img src="asset/images/NACOSLOGO.png" alt="EBSU Logo">
             <div class="logo-text">
-                <h2>FACULTY OF COMPUTING<br>EBSU CLEARANCE</h2>
+                <h2>FACULTY OF COMPUTING<br>EBONYI STATE UNIVERSITY</h2>
             </div>
         </a>
     </header>
